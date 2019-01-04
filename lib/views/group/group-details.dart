@@ -11,7 +11,7 @@ import 'package:whatsapp/views/contacts/contacts.dart';
 class GroupDetail extends StatefulWidget {
   @override
   final Group groups;
-  // In the constructor, require a Group ofr the groups details
+  // In the constructor, require a Group of the groups details
   GroupDetail({Key key, @required this.groups}) : super(key: key);
   GroupState createState() => new GroupState(groups: groups);
 }
@@ -21,9 +21,11 @@ class GroupState extends State<GroupDetail> {
   final Group groups;
 
   //ADD CONTACT TO CHATS
-  final response = LiveData.getChatJSON;
+  final response = LiveData.getContactsJSON;
   List<Contact> contactsList = List();
+  final key = new GlobalKey<ScaffoldState>();
   //List for messages
+  var addedText, added;
   List<GroupMsg> msgList;
   // In the constructor, require a Todo
   GroupState({Key key, @required this.groups});
@@ -34,14 +36,13 @@ class GroupState extends State<GroupDetail> {
     _fetchData();
   }
 
+//Fetchint data from LiveData
   _fetchData() async {
-    Map dataMap = jsonDecode(response);
-    var d = ContactModel.fromJson(dataMap);
-
     setState(() {
       msgList = groups.groupMsg;
-      contactsList = d.contact;
-      print(msgList);
+      contactsList = (json.decode(response) as List)
+          .map((data) => new Contact.fromJson(data))
+          .toList();
     });
   }
 
@@ -69,8 +70,21 @@ class GroupState extends State<GroupDetail> {
                 child: ListTile(
                   leading: image,
                   onTap: () {
+                    // Navigator.pop(context);
+                    setState(() {
+                      addedText = "Added " +
+                          contactsList[index].firstName +
+                          " to group chat";
+
+                          added = Card(child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(addedText),
+                          ));
+                    });
                     Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text("Added " +contactsList[index].firstName + " to group chat" ),
+                      content: new Text("Added " +
+                          contactsList[index].firstName +
+                          " to group chat"),
                     ));
                   },
                   title: Row(
@@ -103,10 +117,16 @@ class GroupState extends State<GroupDetail> {
         });
   }
 
+
+
   Widget _buildList() {
-    //Building messages List
+    //Building messages List on Fab click
     double width = MediaQuery.of(context).size.width * 0.64;
     return ListView.builder(
+       // itemBuilder will be automatically be called as many times as it takes for the
+      // list to fill up its available space, which is most likely more than the
+      // number of todo items we have. So, we need to check the index is OK.
+
         itemCount: msgList.length,
         itemBuilder: (BuildContext context, int index) {
           var card;
@@ -163,7 +183,7 @@ class GroupState extends State<GroupDetail> {
         });
   }
 
-//Layout for group contacts
+//Layout for group contacts for scaffold
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -204,10 +224,12 @@ class GroupState extends State<GroupDetail> {
   _showDialog() async {
     await showDialog<String>(
         context: context,
-        child: new AlertDialog(
-          contentPadding: const EdgeInsets.all(16.0),
-          content: new Row(
-            children: <Widget>[new Expanded(child: _buildList())],
+        child: Scaffold(
+          body: new AlertDialog(
+            contentPadding: const EdgeInsets.all(16.0),
+            content: new Row(
+              children: <Widget>[new Expanded(child: addContacts())],
+            ),
           ),
         ));
   }

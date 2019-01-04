@@ -13,15 +13,18 @@ class Contacts extends StatefulWidget {
 // SingleTickerProviderStateMixin is used for animation
 class ContactsState extends State<Contacts>
     with SingleTickerProviderStateMixin {
+
   final response = LiveData.getContactsJSON;
   List<Contact> contactsList = List();
 
+//Fetching data from LiveData
   @override
   void initState() {
     super.initState();
     _fetchData();
   }
 
+//Fetching data from LiveData
   _fetchData() async {
     setState(() {
       contactsList = (json.decode(response) as List)
@@ -53,8 +56,7 @@ class ContactsState extends State<Contacts>
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
                   leading: image,
-                  onTap: () {
-                  },
+                  onTap: () {},
                   title: Row(
                     children: <Widget>[
                       Expanded(
@@ -96,24 +98,29 @@ class ContactsState extends State<Contacts>
     double height = MediaQuery.of(context).size.width * 0.70;
     return new Center(
       child: MediaQuery.removePadding(
-      removeTop: true,
-      context: context,
-      child: Container(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Container(color:Colors.green, child:  Column(
-              children: <Widget>[
-                  Container(color:Colors.green, child: SizedBox(height: 20,)),
-            
-                AppBar(title: new Text("Contact")),
-              ],
-            )),
-            Flexible(child: _buildList())
-          ],
+        removeTop: true,
+        context: context,
+        child: Container(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Container(
+                  color: Colors.green,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                          color: Colors.green,
+                          child: SizedBox(
+                            height: 20,
+                          )),
+                      AppBar(title: new Text("Contact")),
+                    ],
+                  )),
+              Flexible(child: _buildList())
+            ],
+          ),
         ),
       ),
-    ),
-      );
+    );
   }
 }

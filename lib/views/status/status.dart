@@ -78,7 +78,7 @@ class StatusState extends State<Status> with SingleTickerProviderStateMixin {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => StatusDetail(),
+                      builder: (context) => StatusDetail(_todoItems[index]),
                     ),
                   );
                 },
@@ -91,11 +91,16 @@ class StatusState extends State<Status> with SingleTickerProviderStateMixin {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Text(
-                                _todoItems[index],
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16.0),
+                              SizedBox(
+                                width: 180,
+                                child: Text(
+                                  _todoItems[index],
+                                   overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      
+                                      fontSize: 16.0),
+                                ),
                               ),
                             ],
                           ),

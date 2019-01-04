@@ -21,7 +21,7 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
     super.initState();
     _fetchData();
   }
-
+//
   _fetchData() async {
     Map dataMap = jsonDecode(response);
     var d = ChatsModel.fromJson(dataMap);
@@ -34,6 +34,10 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
   @override
   Widget _buildList() {
     return ListView.builder(
+       // itemBuilder will be automatically be called as many times as it takes for the
+      // list to fill up its available space, which is most likely more than the
+      // number of todo items we have. So, we need to check the index is OK.
+
         itemCount: chatsList.length,
         itemBuilder: (BuildContext context, int index) {
           var image;
@@ -130,6 +134,7 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
           backgroundColor: Colors.lightGreen.shade700),);
   }
 
+//DIALOG FOR ONCLICK OF FAB
   _showDialog() async {
     await showDialog<String>(
         context: context,

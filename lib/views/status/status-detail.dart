@@ -2,25 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 class StatusDetail extends StatefulWidget {
+  final String stat;
+  // In the constructor, require a String to update status text
+  StatusDetail(this.stat);
   @override
-  StatusState createState() => new StatusState();
+  StatusState createState() => StatusState(stat);
 }
 
-
 class StatusState extends State<StatusDetail> {
+  
+  final String stat;
+  StatusState(this.stat);
 
 //Status layout
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Stack(children: <Widget>[
-        new Container(
-          child: SizedBox(height: height),
-          decoration: new BoxDecoration(color: Colors.blue),
-        ),
-        new Container(child: Center(child: Text("")))
-      ]),
+      body: Container(
+        color: Colors.green,
+        child: Center(
+            child: Text(stat,
+          style: TextStyle(color: Colors.white,fontSize: 33),
+        )),
+      ),
     );
   }
 }
