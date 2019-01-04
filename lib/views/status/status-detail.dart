@@ -13,14 +13,14 @@ class StatusState extends State<StatusDetail> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.width;
-    return new Material(
-        type: MaterialType.transparency,
-        child: Stack(children: <Widget>[
-          new Container(
-            child: SizedBox(height: height),
-            decoration: new BoxDecoration(color: Colors.blue),
-          ),
-          new Container(child: Center(child: Text("")))
-        ]));
+    return Scaffold(
+      body: Stack(children: <Widget>[
+        new Container(
+          child: SizedBox(height: height),
+          decoration: new BoxDecoration(color: Colors.blue),
+        ),
+        new Container(child: Center(child: Text("")))
+      ]),
+    );
   }
 }

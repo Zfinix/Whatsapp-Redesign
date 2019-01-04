@@ -37,7 +37,7 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
         itemCount: chatsList.length,
         itemBuilder: (BuildContext context, int index) {
           var image;
-             if (chatsList[index].profilePicture != null) {
+          if (chatsList[index].profilePicture != null) {
             image = new Container(
                 width: 56.0,
                 height: 56.0,
@@ -45,7 +45,8 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
                     shape: BoxShape.circle,
                     image: new DecorationImage(
                         fit: BoxFit.fill,
-                        image: new NetworkImage(chatsList[index].profilePicture))));
+                        image: new NetworkImage(
+                            chatsList[index].profilePicture))));
           }
           return Column(
             children: <Widget>[
@@ -54,48 +55,48 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
                 child: ListTile(
                   leading: image,
                   onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ChatsDetail(chats: chatsList[index]),
-                    ),
-                  );
-                },
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ChatsDetail(chats: chatsList[index]),
+                      ),
+                    );
+                  },
                   title: Row(
                     children: <Widget>[
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Text(
-                                    chatsList[index].firstName,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 16.0),
-                                  ),
-                                  Text(
-                                    chatsList[index].time,
-                                    style: TextStyle(color: Colors.black45, fontSize: 12.0),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 2.0),
-                                child: Text(
-                                  chatsList[index].mostRecentMessages,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  chatsList[index].firstName,
                                   style: TextStyle(
-                                      color: Colors.black45, fontSize: 13.0),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16.0),
                                 ),
-                              )
-                            ],
-                          ),
+                                Text(
+                                  chatsList[index].time,
+                                  style: TextStyle(
+                                      color: Colors.black45, fontSize: 7.0),
+                                ),
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 2.0),
+                              child: Text(
+                                chatsList[index].mostRecentMessages,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    color: Colors.black45, fontSize: 13.0),
+                              ),
+                            )
+                          ],
                         ),
                       )
                     ],
@@ -117,6 +118,26 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
           child: Column(
             children: <Widget>[Flexible(child: _buildList())],
           ),
-        ));
+        ),
+        floatingActionButton: new FloatingActionButton(
+        heroTag: null,
+          onPressed: () {
+            _showDialog();
+          },
+          tooltip: 'Camera',
+          child: new Icon(Icons.camera_alt, color: Colors.white),
+          elevation: 10.0,
+          backgroundColor: Colors.lightGreen.shade700),);
+  }
+
+  _showDialog() async {
+    await showDialog<String>(
+        context: context,
+        child: new AlertDialog(
+            contentPadding: const EdgeInsets.all(16.0),
+            content: new Row(
+              children: <Widget>[new Expanded(child: _buildList())],
+            ),
+            ));
   }
 }

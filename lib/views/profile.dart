@@ -28,6 +28,7 @@ class ProfileState extends State<ProfileDetail>
 
   @override
   Widget build(BuildContext context) {
+    /* Not Using Scaffold to fix the bug of layout flying out on focus in an TextForm Field  */
     return new Container(
         child: new Center(
       child: MediaQuery.removePadding(
@@ -63,7 +64,7 @@ class ProfileState extends State<ProfileDetail>
                     ),
                     Row(
                       children: <Widget>[
-                        Icon(Icons.info, size:30),
+                        Icon(Icons.info, size: 30),
                         SizedBox(
                           width: 10,
                         ),
@@ -78,7 +79,7 @@ class ProfileState extends State<ProfileDetail>
                     ),
                     Row(
                       children: <Widget>[
-                        Icon(Icons.save, size:30),
+                        Icon(Icons.save, size: 30),
                         SizedBox(
                           width: 10,
                         ),
