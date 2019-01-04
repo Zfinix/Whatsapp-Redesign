@@ -1,0 +1,62 @@
+[{
+  "name": "ClubCorp Holdings, Inc.",
+  "img": "http://dummyimage.com/300x500.png/cc0000/ffffff",
+  "members": "You, +84 356 333 2685, +86 862 733 9248, +375 196 568 0887",
+  "group_msg": [{
+      "sender": "+84 356 333 2685",
+      "content": "sem praesent id massa id nisl"
+    },
+    {
+      "sender": "+84 356 333 2685",
+      "content": "sed accumsan felis ut at dolor quis"
+    },
+    {
+      "sender": "375 196 568 0887",
+      "content": "sodales sed tincidunt eu felis fusce posuere felis sed"
+    },
+    {
+      "sender": "375 196 568 0887",
+      "content": "id justo sit amet sapien dignissim"
+    }
+  ]
+}, {
+  "name": "ENSCO plc",
+  "img": "http://dummyimage.com/300x500.png/ff4444/ffffff",
+  "members": "You, +62 338 243 9622, +55 666 641 0215",
+  "group_msg": [{
+      "sender": "+62 338 243 9622",
+      "content": "ac lobortis vel dapibus at"
+    },
+    {
+      "sender": "+55 666 641 0215",
+      "content": "vulputate vitae nisl aenean lectus pellentesque eget nunc donec"
+    }
+  ]
+}, {
+  "name": "Dynasil Corporation of America",
+  "img": "http://dummyimage.com/300x500.png/5fa2dd/ffffff",
+  "members": "You, +249 215 974 8212, +7 829 477 1535, +55 338 159 5572, +62 815 387 6935",
+  "group_msg": [{
+      "sender": "+249 215 974 8212",
+      "content": "venenatis lacinia aenean sit amet"
+    },
+    {
+      "sender": "+55 338 159 5572",
+      "content": "maecenas tristique est et tempus semper"
+    },
+    {
+      "sender": "+62 815 387 6935",
+      "content": "vel augue vestibulum ante ipsum primis in"
+    }
+  ]
+}, {
+  "name": "CASI Pharmaceuticals, Inc.",
+  "img": "http://dummyimage.com/300x500.png/dddddd/000000",
+  "members": "You, +62 575 689 5973, +48 423 694 4554",
+  "group_msg": []
+}, {
+  "name": "John Hancock Financial Opportunities Fund",
+  "img": "http://dummyimage.com/300x500.png/cc0000/ffffff",
+  "members": "You, +48 788 135 1540, +30 835 724 7956",
+  "group_msg": []
+}]
