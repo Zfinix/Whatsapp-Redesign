@@ -10,7 +10,6 @@ class StatusDetail extends StatefulWidget {
 }
 
 class StatusState extends State<StatusDetail> {
-  
   final String stat;
   StatusState(this.stat);
 
@@ -22,8 +21,12 @@ class StatusState extends State<StatusDetail> {
       body: Container(
         color: Colors.green,
         child: Center(
-            child: Text(stat,
-          style: TextStyle(color: Colors.white,fontSize: 33),
+            child: Container(
+          margin: EdgeInsets.all(20),
+          child: Text(
+            stat,
+            style: TextStyle(color: Colors.white, fontSize: 33),
+          ),
         )),
       ),
     );

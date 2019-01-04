@@ -27,7 +27,7 @@ class GroupState extends State<GroupDetail> {
   //List for messages
   var addedText, added;
   List<GroupMsg> msgList;
-  // In the constructor, require a Todo
+  // In the constructor, require a Group
   GroupState({Key key, @required this.groups});
 
   @override
@@ -125,7 +125,7 @@ class GroupState extends State<GroupDetail> {
     return ListView.builder(
        // itemBuilder will be automatically be called as many times as it takes for the
       // list to fill up its available space, which is most likely more than the
-      // number of todo items we have. So, we need to check the index is OK.
+      // number of group items we have. So, we need to check the index is OK.
 
         itemCount: msgList.length,
         itemBuilder: (BuildContext context, int index) {

@@ -36,7 +36,7 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
     return ListView.builder(
        // itemBuilder will be automatically be called as many times as it takes for the
       // list to fill up its available space, which is most likely more than the
-      // number of todo items we have. So, we need to check the index is OK.
+      // number of chat items we have. So, we need to check the index is OK.
 
         itemCount: chatsList.length,
         itemBuilder: (BuildContext context, int index) {

@@ -9,6 +9,7 @@
 .buildlog/
 .history
 .svn/
+key.jks
 
 # IntelliJ related
 *.iml
@@ -35,6 +36,7 @@ build/
 **/android/gradlew
 **/android/gradlew.bat
 **/android/local.properties
+**/android/key.properties
 **/android/**/GeneratedPluginRegistrant.java
 
 # iOS/XCode related

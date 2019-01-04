@@ -11,7 +11,7 @@ class Status extends StatefulWidget {
 // SingleTickerProviderStateMixin is used for animation
 class StatusState extends State<Status> with SingleTickerProviderStateMixin {
   TextEditingController status = new TextEditingController();
-  List<String> _todoItems = [];
+  List<String> statItems = [];
 
   // This will be called each time the + button is pressed
 
@@ -42,7 +42,7 @@ class StatusState extends State<Status> with SingleTickerProviderStateMixin {
               child: const Text('CREATE'),
               onPressed: () {
                 setState(() {
-                  _todoItems.add(status.text);
+                  statItems.add(status.text);
                   Navigator.pop(context);
                 });
               })
@@ -51,12 +51,12 @@ class StatusState extends State<Status> with SingleTickerProviderStateMixin {
     );
   }
 
-  // Build the whole list of todo items
+  // Build the whole list of status items
   Widget _buildStatusList() {
     return new ListView.builder(itemBuilder: (context, index) {
       // itemBuilder will be automatically be called as many times as it takes for the
       // list to fill up its available space, which is most likely more than the
-      // number of todo items we have. So, we need to check the index is OK.
+      // number of status items we have. So, we need to check the index is OK.
 
       var image = new Container(
           width: 56.0,
@@ -67,7 +67,7 @@ class StatusState extends State<Status> with SingleTickerProviderStateMixin {
                   fit: BoxFit.fill,
                   image: new NetworkImage(
                       "http://dummyimage.com/300x500.png/cc0000/ffffff"))));
-      if (index < _todoItems.length) {
+      if (index < statItems.length) {
         return Column(
           children: <Widget>[
             Padding(
@@ -78,7 +78,7 @@ class StatusState extends State<Status> with SingleTickerProviderStateMixin {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => StatusDetail(_todoItems[index]),
+                      builder: (context) => StatusDetail(statItems[index]),
                     ),
                   );
                 },
@@ -92,9 +92,9 @@ class StatusState extends State<Status> with SingleTickerProviderStateMixin {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               SizedBox(
-                                width: 180,
+                                width: 200,
                                 child: Text(
-                                  _todoItems[index],
+                                  statItems[index],
                                    overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
