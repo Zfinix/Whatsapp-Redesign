@@ -72,6 +72,7 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
       ),
       // Set the bottom navigation bar
       floatingActionButton: new FloatingActionButton(
+        heroTag: null,
           onPressed: () {
             setState(() {
               controller.index = 2;

@@ -7,19 +7,92 @@ class ProfileDetail extends StatefulWidget {
 }
 
 // SingleTickerProviderStateMixin is used for animation
-class ProfileState extends State<ProfileDetail> with SingleTickerProviderStateMixin {
+class ProfileState extends State<ProfileDetail>
+    with SingleTickerProviderStateMixin {
+  Widget _buildAvatar() {
+    return Image.asset("assets/icons/profile.png", scale: 4.5);
+  }
+
+  ///FIELD FOR NAME
+  final name = TextFormField(
+    keyboardType: TextInputType.text,
+    autofocus: false,
+    initialValue: "Ogbonda Chiziaruhoma",
+    decoration: InputDecoration(
+      labelText: 'Name',
+      contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5.0), borderSide: BorderSide()),
+    ),
+  );
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        // 1
-        appBar: new AppBar(
-          title: new Text("Profile"),
-          // screen title
-        ),
-        body: new Center(
-          child: new Container(
-            child: new Text("Your Profile"),
-          ),
-        ));
+    return new Container(
+        child: new Center(
+      child: MediaQuery.removePadding(
+          removeTop: true,
+          context: context,
+          child: new ListView(
+            children: <Widget>[
+              Container(color: Colors.green, child: SizedBox(height: 20)),
+              AppBar(title: new Text("Profile")),
+              Container(
+                margin: EdgeInsets.only(left: 20, right: 20),
+                child: Column(
+                  children: <Widget>[
+                    _buildAvatar(),
+                    name,
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.person, size: 30),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Account",
+                          style: TextStyle(fontSize: 15),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.info, size:30),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "About",
+                          style: TextStyle(fontSize: 15),
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      children: <Widget>[
+                        Icon(Icons.save, size:30),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "Save",
+                          style: TextStyle(fontSize: 15),
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          )),
+    ));
   }
 }

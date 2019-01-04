@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:whatsapp/liveData/liveData.dart';
 import 'package:whatsapp/models/groups/groupsModel.dart';
+import 'package:whatsapp/views/group/group-details.dart';
 
 class Groups extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class Groups extends StatefulWidget {
 // SingleTickerProviderStateMixin is used for animation
 class GroupState extends State<Groups> with SingleTickerProviderStateMixin {
   final response = LiveData.getGroupJSON;
+  TextEditingController group = new TextEditingController();
   List<Group> groupsList = List();
   List<GroupMsg> groupsMsgList = List();
   var content = "";
@@ -38,7 +40,6 @@ class GroupState extends State<Groups> with SingleTickerProviderStateMixin {
         itemCount: groupsList.length,
         itemBuilder: (BuildContext context, int index) {
           var image;
-          
 
           if (groupsList[index].img != null) {
             image = new Container(
@@ -62,6 +63,15 @@ class GroupState extends State<Groups> with SingleTickerProviderStateMixin {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            GroupDetail(groups: groupsList[index]),
+                      ),
+                    );
+                  },
                   leading: image,
                   title: Row(
                     children: <Widget>[
@@ -76,7 +86,7 @@ class GroupState extends State<Groups> with SingleTickerProviderStateMixin {
                                     MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   SizedBox(
-                                    width:160,
+                                    width: 160,
                                     child: Text(
                                       groupsList[index].name,
                                       maxLines: 1,
@@ -119,13 +129,82 @@ class GroupState extends State<Groups> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        // 1
-        appBar: null,
-        body: new Center(
-          child: Column(
-            children: <Widget>[Flexible(child: _buildList())],
+    double height = MediaQuery.of(context).size.width * 0.70;
+    return new Material(
+        child: new Center(
+      child: Container(
+        color: Colors.white,
+        child: Material(
+          type: MaterialType.transparency,
+          child: Stack(
+            children: <Widget>[
+              Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                    Flexible(child: _buildList())
+                  ],
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: FloatingActionButton(
+                  heroTag: "fab",
+                  onPressed: () {
+                    _showDialog();
+                  },
+                  child: Icon(Icons.message, color: Colors.white),
+                  backgroundColor: Colors.amber,
+                ),
+              ),
+              
+            ],
           ),
-        ));
+        ),
+      ),
+    ));
   }
+
+  _showDialog() async {
+            await showDialog<String>(
+              context: context,
+              child: 
+                new AlertDialog(
+                  contentPadding: const EdgeInsets.all(16.0),
+                  content: new Row(
+                    children: <Widget>[
+                      new Expanded(
+                        child: new TextField(
+                          autofocus: true,
+                          decoration: new InputDecoration(
+                              labelText: group.text, hintText: 'Group Name'),
+                        ),
+                      )
+                    ],
+                  ),
+                  actions: <Widget>[
+                    new FlatButton(
+                        child: const Text('CANCEL'),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        }),
+                    new FlatButton(
+                        child: const Text('Create'),
+                        onPressed: () {
+                          List<GroupMsg> addMsg;
+                          setState(() {
+                            addMsg.add(new GroupMsg(content: "",sender: ""));
+                            groupsList.add(new Group(
+                                img:
+                                    "http://dummyimage.com/300x500.png/cc0000/ffffff",
+                                name: group.text,
+                                members: "You",
+                                groupMsg: null));
+                          });
+                        })
+                  ],
+                ),
+            );
+          }
 }
+

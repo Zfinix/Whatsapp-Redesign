@@ -8,14 +8,8 @@ part of 'statusModel.dart';
 
 StatusModel _$StatusModelFromJson(Map<String, dynamic> json) {
   return StatusModel(
-      msg: json['msg'] as String,
-      image: json['image'] as String,
-      time: json['time'] as String);
+      message: json['message'] as String, time: json['time'] as String);
 }
 
 Map<String, dynamic> _$StatusModelToJson(StatusModel instance) =>
-    <String, dynamic>{
-      'msg': instance.msg,
-      'time': instance.time,
-      'image': instance.image
-    };
+    <String, dynamic>{'message': instance.message, 'time': instance.time};

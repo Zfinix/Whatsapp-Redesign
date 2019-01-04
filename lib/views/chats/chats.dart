@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:whatsapp/liveData/liveData.dart';
 import 'package:whatsapp/models/chats/chatsModel.dart';
+import 'package:whatsapp/views/chats/chats-details.dart';
 
 class Chat extends StatefulWidget {
   @override
@@ -52,6 +53,14 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
                   leading: image,
+                  onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ChatsDetail(chats: chatsList[index]),
+                    ),
+                  );
+                },
                   title: Row(
                     children: <Widget>[
                       Expanded(

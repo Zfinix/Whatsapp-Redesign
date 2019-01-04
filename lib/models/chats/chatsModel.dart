@@ -70,16 +70,19 @@ class Chats {
 }
 
 class Msg {
+  bool sent;
   String message;
 
   Msg({this.message});
 
   Msg.fromJson(Map<String, dynamic> json) {
+    sent = json['sent'];
     message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['sent'] = this.sent;
     data['message'] = this.message;
     return data;
   }

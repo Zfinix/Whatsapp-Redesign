@@ -6,20 +6,21 @@ class StatusDetail extends StatefulWidget {
   StatusState createState() => new StatusState();
 }
 
-// SingleTickerProviderStateMixin is used for animation
-class StatusState extends State<StatusDetail> with SingleTickerProviderStateMixin {
+
+class StatusState extends State<StatusDetail> {
+
+//Status layout
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        // 1
-        appBar: new AppBar(
-          title: new Text("Home"),
-          // screen title
-        ),
-        body: new Center(
-          child: new Container(
-            child: new Text("Your have no Notifications Currently"),
+    double height = MediaQuery.of(context).size.width;
+    return new Material(
+        type: MaterialType.transparency,
+        child: Stack(children: <Widget>[
+          new Container(
+            child: SizedBox(height: height),
+            decoration: new BoxDecoration(color: Colors.blue),
           ),
-        ));
+          new Container(child: Center(child: Text("")))
+        ]));
   }
 }

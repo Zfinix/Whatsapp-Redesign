@@ -17,7 +17,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-
+//CREATING TAB CONTROLLER FOR BOTOM NAV
     tabController = TabController(vsync: this, length: 4)
       ..addListener(() {
         setState(() {
@@ -36,6 +36,7 @@ class HomeState extends State<Home> with SingleTickerProviderStateMixin {
       });
   }
 
+//Building layout for bottom nav and its clases
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
