@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:whatsapp/liveData/liveData.dart';
 import 'package:whatsapp/models/contacts/contactsModel.dart';
-import 'package:whatsapp/models/contacts/contactsModel.dart';
 import 'package:whatsapp/models/groups/groupsModel.dart';
-import 'package:whatsapp/views/contacts/contacts.dart';
+import 'package:whatsapp/detail-views/contacts/contacts.dart';
 
 class GroupDetail extends StatefulWidget {
   @override

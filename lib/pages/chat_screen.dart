@@ -1,18 +1,17 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:whatsapp/liveData/liveData.dart';
 import 'package:whatsapp/models/chats/chatsModel.dart';
-import 'package:whatsapp/views/chats/chats-details.dart';
+import 'package:whatsapp/detail-views/chats/chats-details.dart';
 
-class Chat extends StatefulWidget {
+class ChatScreen extends StatefulWidget {
   @override
   ChatsState createState() => new ChatsState();
 }
 
 // SingleTickerProviderStateMixin is used for animation
-class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
+class ChatsState extends State<ChatScreen> {
   final response = LiveData.getChatJSON;
   List<Chats> chatsList = List();
 
@@ -21,6 +20,7 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
     super.initState();
     _fetchData();
   }
+
 //
   _fetchData() async {
     Map dataMap = jsonDecode(response);
@@ -34,9 +34,9 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
   @override
   Widget _buildList() {
     return ListView.builder(
-       // itemBuilder will be automatically be called as many times as it takes for the
-      // list to fill up its available space, which is most likely more than the
-      // number of chat items we have. So, we need to check the index is OK.
+        // itemBuilder will be automatically be called as many times as it takes for the
+        // list to fill up its available space, which is most likely more than the
+        // number of chat items we have. So, we need to check the index is OK.
 
         itemCount: chatsList.length,
         itemBuilder: (BuildContext context, int index) {
@@ -74,8 +74,7 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text(
                                   chatsList[index].firstName,
@@ -116,26 +115,27 @@ class ChatsState extends State<Chat> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        // 1
-        appBar: null,
-        body: new Center(
-          child: Column(
-            children: <Widget>[Flexible(child: _buildList())],
-          ),
+      // 1
+      appBar: null,
+      body: new Center(
+        child: Column(
+          children: <Widget>[Flexible(child: _buildList())],
         ),
-        floatingActionButton: new FloatingActionButton(
-        heroTag: null,
-          onPressed: () {
-            _showDialog();
-          },
-          tooltip: 'Camera',
-          child: new Icon(Icons.camera_alt, color: Colors.white),
-          elevation: 10.0,
-          backgroundColor: Colors.lightGreen.shade700),);
+      ),
+
+      floatingActionButton: new FloatingActionButton(
+        backgroundColor: Theme.of(context).accentColor,
+        child: new Icon(
+          Icons.message,
+          color: Colors.white,
+        ),
+        onPressed: () => _showDialog(),
+      ),
+    );
   }
 
 //DIALOG FOR ONCLICK OF FAB
-  _showDialog() async {
+_showDialog() async {
     await showDialog<String>(
         context: context,
         child: new AlertDialog(

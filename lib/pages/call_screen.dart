@@ -5,13 +5,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:whatsapp/liveData/liveData.dart';
 import 'package:whatsapp/models/calls/callsModel.dart';
 
-class Calls extends StatefulWidget {
+class CallScreen extends StatefulWidget {
   @override
   CallState createState() => new CallState();
 }
 
 // SingleTickerProviderStateMixin is used for animation
-class CallState extends State<Calls> with SingleTickerProviderStateMixin {
+class CallState extends State<CallScreen> {
   final response = LiveData.getCallJSON;
   List<Call> callsList = List();
   @override

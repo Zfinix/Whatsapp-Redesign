@@ -73,7 +73,7 @@ class Msg {
   bool sent;
   String message;
 
-  Msg({this.message});
+  Msg({this.sent,this.message});
 
   Msg.fromJson(Map<String, dynamic> json) {
     sent = json['sent'];
